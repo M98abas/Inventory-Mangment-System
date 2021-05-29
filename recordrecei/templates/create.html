@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block addcontent %}
+	<a class="navbar-brand" href="{% url 'report' %}">Reports</a>
+	<a class="navbar-brand" href="{% url 'listresp' %}">Table of Receivable</a>
+{% endblock %}
+
+{% block head %}
+    <h1 class="mt-4">Create New Item</h1>
+{% endblock %}
+{% block cardcontent %}
+	<form action="" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="row">
+			{{form}}
+			{{formit}}
+			{{formqun}}
+			{{formdate}}
+			
+		</div>
+		<br>
+			<input class="btn btn-primary" type="submit" value="Add New">
+	</form>
+
+<script type="text/javascript" charset="utf-8">
+	
+	document.getElementById("rfid").focus();
+
+</script>
+{% endblock %}

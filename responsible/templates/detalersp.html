@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+	     <h1 class="mt-4">Recivable of {{qsres.Name_resp}}</h1>
+{% endblock %}
+
+
+{% block cardcontent %}
+<div class="card">
+	<div class="card-body">
+	{% if postrf_list %}
+		{% for ins in postrf_list %}
+				<h4>RFID number file : </h4> <a href="{% url 'showitem' id=ins.id %}" title="Go"><h2>{{ins.rfid}}</h2></a>	
+		{% endfor %}
+	{% else %}
+	<h4>Number of department/unit  : </h4> <h3>{{qsrf.rfid}}</h3>
+	{% endif %}
+	<h4>Number of department/room  : </h4> <h3>{{qsres.resp_id.room_id}}</h3>
+	<h4>Name of department/room  : </h4> <h3>{{qsres.resp_id.roomName}}</h3>
+
+	<h4>Name of Responsible : </h4> <h3>{{qsres.Name_resp}}</h3>
+	<h4>Date of take it : </h4> <h3>{{qsres.date_resp}}</h3>
+	<h4>Date of back it : </h4> <h3>{{qsres.date_back}}</h3>
+	<a class="btn btn-primary"href="{% url 'updaterespon' qsres.resp_id.id %}" title="Upadate">Upadate</a>
+	<a class="btn btn-danger"href="{% url 'deleterespon' qsres.resp_id.id %}" title="Delete">Delete</a>
+</div>
+</div>
+{% endblock %}

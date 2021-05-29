@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block addcontent %}
+	<a class="navbar-brand" href="{% url 'addnew' %}">Add New Item</a>
+	<a class="navbar-brand" href="{% url 'listresp' %}">Table of Receivable</a>
+
+{% endblock %}
+{% block head %} 
+	<h1 class="mt-4">Report</h1> 
+{% endblock %}
+{% block table_in %}
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-{{message.tags}}">
+			{{message}}
+		</div>
+	{% endfor %}
+{% endif %}
+<!-- <p>{{object_listrf.name}}</p> -->
+	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	    <thead>
+	        <tr>
+	            <th>Numbering</th>
+	            <th>Name</th>
+	            <th>employee file</th>
+	            <th>Quntity</th>
+	            <th>Price</th>
+	            <th>Date</th>
+	            <th>Inventory</th>
+        </tr>
+	    </thead>
+	    <tbody>
+	    {% for objrf in object_listrf %}
+	        <tr>
+	            <td><a href="/report/{{objrf.id}}" title="Go">{{objrf.rfid}}</a></td>
+	            <td>{{objrf.doc_items.id_items.name}}</td>
+	            <td>{{objrf.doc_items.id_items.item_number}}</td>
+	            <td>{{objrf.doc_items.quantity}}</td>
+	            <td>{{objrf.doc_items.price}}</td>
+	            <td>{{objrf.doc_items.ID_doc.date_it}}</td>
+	            <td>{{objrf.doc_items.is_stay}} </td>
+	        </tr>
+	    {% endfor %}
+{% endblock %}

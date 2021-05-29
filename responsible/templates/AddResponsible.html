@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block addcontent %}
+	<a class="navbar-brand" href="{% url 'listresp' %}">Table of Receivable</a>
+	<a class="navbar-brand" href="{% url 'addnew' %}">Add New Item</a>
+
+{% endblock %}
+
+{% block head %}
+
+    <h1 class="mt-4">New Responsible</h1>
+{% endblock %}
+{% block cardcontent %}
+	<form action="" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="row">
+			
+			{{formrom}}
+			{{formresb}}
+		</div>
+		<br>
+			<input class="btn btn-primary" type="submit" value="Add New">
+	</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+	     <h1 class="mt-4">Report about this {{qsqun.id_items.name}} Item </h1>
+{% endblock %}
+
+{% block cardcontent %}
+<div class="card">
+	<div class="card-body">
+		{% if postrf_list %}
+			{% for ins in postrf_list %}
+				<h4>Receivable : </h4> <a href="{% url 'showrespon' id=ins.id %}" title="Go"><h2>{{ins.rfid_item}}</h2></a>
+			{% endfor %}
+		{% else %}
+			<h4>RFID number file : </h4> <h2>{{qsrf.rfid}}</h2>
+		{% endif %}
+		<h4>Items Number in Files of Inventory Managment : </h4> <h3>{{qsqun.id_items.item_number}}</h3>
+		<h4>Item detail : </h4> <h3>{{qsqun.id_items.name}}</h3>
+		<h4>The source of Items: </h4> <h3>{{qsqun.source}}</h3>
+		<h4>Quntite of Items in nventory : </h4> <h3>{{qsqun.quantity}}</h3>
+		<h4>The date of Inter This Item : </h4> <h3>{{qsqun.ID_doc.date_it}}</h3>
+		<h4>Price of this Item : </h4> <h3>{{qsqun.price}}</h3>
+		<a class="btn btn-primary"href="{% url 'update' qsrf.id %}" title="Update">Upadate</a>
+		<a class="btn btn-danger"href="{% url 'delete' qsrf.id %}" title="Delete">Delete</a>
+	</div>
+</div>
+{% endblock %}

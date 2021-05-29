@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block cardcontent %}
+
+<div class="row">
+	<div class="col-12 col-6 mx-auto">
+		{% if query %}
+		<div class="card">
+			<div class="card-body">
+				{% for posting in postrf_list %}
+					<h4>The search of RFID number in Items : </h4> <h2>{{posting.rfid}}</h2>
+						<a class="btn btn-primary"href="{% url 'showitem' posting.id %}" title="Show items">show</a>
+		    	{% endfor %}
+    		</div>
+    	</div>
+    	<div class="card">
+    		<div class="card-body">
+				{% for posting in postres_list %}
+					<h4>Your search in responsiblabilty : </h4> <h2>{{posting.Name_resp}}</h2>
+						<a class="btn btn-primary"href="{% url 'showrespon' posting.id %}" title="Show items">show</a>
+		    	{% endfor %}
+	    	</div>
+	    </div>
+	    <div class="card">
+	    	<div class="card-body">
+				{% for posting in postroom_list %}
+					<h4>Your search in responsiblabilty is : </h4> <h2>{{posting.rfid_item}}</h2>
+						<a class="btn btn-primary"href="{% url 'showrespon' posting.id %}" title="Show items">show</a>
+		    	{% endfor %}
+    		</div>
+    	</div>
+		{% else %}
+			<form class="form-inline my-2 my-lg-0" action="/search/">
+	      		<input class="form-control mr-sm-2" type="search" name ="query" placeholder="Search"  aria-label="Search">
+	        	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    		</form>
+    	{% endif %}
+	</div>
+</div>
+{% endblock %}

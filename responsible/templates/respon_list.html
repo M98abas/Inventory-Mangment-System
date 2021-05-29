@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block addcontent %}
+
+	<a class="navbar-brand" href="{% url 'addnew' %}" style="">Add New Item</a>
+	<a class="navbar-brand" href="{% url 'addnewrespon' %}">Add New Receivable</a>
+
+{% endblock %}
+{% block head %} 
+	<h1 class="mt-4">Responsibility Table</h1> 
+{% endblock %}
+{% block table_in %}
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-{{message.tags}}">
+			{{message}}
+		</div>
+	{% endfor %}
+{% endif %}
+
+<!-- <p>{{object_listrf.name}}</p> -->
+	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	    <thead>
+	        <tr>
+	            <th>Room id</th>
+	            <th>rfid</th>
+	            <th>room Name</th>
+	            <th>Name Receivable</th>
+	            <th>Date of take Item</th>
+	            <th>Date of back Item</th>
+        </tr>
+	    </thead>
+	    <tbody>
+	    {% for objrf in object_resp %}
+	        <tr>
+	            <td><a href="{% url 'showrespon' id=objrf.id %}" title="Go">{{objrf.resp_id.room_id}}</a></td>
+	            <td>{{objrf.resp_id.rfid_item}}</td>
+	            <td>{{objrf.resp_id.roomName}}</td>
+	            <td>{{objrf.Name_resp}}</td>
+	            <td>{{objrf.date_resp}}</td>
+	            <td>{{objrf.date_back}}</td>
+	        </tr>
+	    {% endfor %}
+{% endblock %}

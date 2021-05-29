@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block user_in %}
+    {% if user.is_authenticated %}
+  <!--   <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+        	<h2>Hello {{ user.username }} </h2>
+        </li>
+    </ol> -->
+    <br>
+
+		<div class="row">
+            <div class="col-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">Add new Item</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="{% url 'addnew' %}">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">Add New Receivable</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="{% url 'addnewrespon' %}">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div></div>
+                    
+           	</div>
+
+        </div>	
+        <div class="row">
+            <div class="col-6 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Reports</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="{% url 'report' %}">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Reports(PDF)</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href=" {% url 'reportpdf' %} ">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Show Receivable list</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="{% url 'listresp' %}">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Show Receivable list (PDF)</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="{% url 'listresppdf' %}">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+    {% endif %}
+{% endblock %}
+
+{% block cardcontent %}
+<p></p>
+{% if user.is_authenticated %}
+    <p></p>
+{% else %}
+            <div>
+                <h2 class="mt-4"> You Login out Hope you satisfied of this Website
+                </h2>
+                <!-- <h1>  Welcome to Inventry Mangment System</h1> -->
+                <h2>please,<a href="{% url 'Login' %}" title="Login">Login</a> if you'd like to .</h2>
+            </div>
+{% endif %}
+{% endblock %}
+
+
+{% block indexing %}
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small" style="font-size: 20px">
+                <div class="text-muted">Copyright &copy; Mahmoud Abbas 2020</div>
+                <div style="font-size: 25px">
+                    <a href="https://www.linkedin.com/in/mahmoud-abbas-9039ba180/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#"><i class="fab fa-facebook-square"></i></a>
+                    &middot;
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

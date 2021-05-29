@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'assets/img/inv.png' %}">
+        {% include 'metain.html' %}
+        <title>Inventory management system || {% block title %} {% endblock %}</title>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'Indexing' %}">Home</a>
+            {% block addcontent %}{% endblock %}
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" method="GET" name ="query" action="/search/">
+                <div class="input-group">
+                    <span style="color: white; font-size: 21px; margin-right: 5px "> Search : </span>
+                    <input name="query" style=" width: 300px; border-radius: 8px; text-indent:5px;" value="{{request.GET.query}}" placeholder="Searching...">
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar-->
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav ml-auto ml-md-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <div class="dropdown-divider"></div>
+                            <form action="{% url 'logout' %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+                                <a class="dropdown-item" href="{% url 'logout' %}">
+                                <input type="submit" name="logout" value="logout">
+                                </a>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            {% endif %}
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        {{ user.username }} 
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container">
+                        {% block head %}
+                        <h1 class="mt-4">Inventory Management System</h1>
+                        {% endblock %}
+            
+                        {% block user_in %}
+                            
+                        {% endblock %}
+
+                       
+
+                        <div class="card">
+                            <div class="card-body">
+                            {% block table_in %}
+                            {% endblock table_in %}
+                            {% block cardcontent %}
+
+                            {% endblock %}
+
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                {% block indexing %}
+                {% endblock %}
+            </div>
+        </div>
+        {% include 'scripts.html' %}
+    </body>
+</html>
